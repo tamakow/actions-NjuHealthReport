@@ -15,9 +15,9 @@ logging.basicConfig(
 # The data you need to fill
 data = {
     # fill them:
-    'username': '191240080',  # 学号
-    'password': 'zx18770867616',  # 密码
-    'location': '中国江苏省南京市栖霞区远东大道',  # 地址, 如 中国xx省xx市xx区xxxx
+    'username': 'fill-it',  # 学号
+    'password': 'fill-it',  # 密码
+    'location': 'fill-it',  # 地址, 如 中国xx省xx市xx区xxxx
     'deadline': '2022-10-05', # 填报截止日期，超过该天则停止填报并报错到 actions，开区间
 
     'none': 'none'

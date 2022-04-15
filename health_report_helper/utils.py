@@ -14,6 +14,9 @@ def get_GMT8_timestamp():
 def get_GMT8_str(format: str):
     return (datetime.datetime.utcfromtimestamp((time.time())) + datetime.timedelta(hours=8)).strftime(format)
 
+def get_two_days_ago_GMT8_str(format: str):
+    return (datetime.datetime.utcfromtimestamp((time.time())) + datetime.timedelta(hours=8) - datetime.timedelta(days=2)).strftime(format)
+
 
 def str_to_timestamp(time_str: str, format: str):
     return int(time.mktime(time.strptime(time_str, format)))

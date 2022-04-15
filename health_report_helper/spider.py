@@ -26,7 +26,7 @@ def get_apply_list(cookies):
         raise e
 
 
-def do_apply(cookies, WID, location):
+def do_apply(cookies, WID, location, hstime):
     try:
         response = requests.get(
             url='http://ehallapp.nju.edu.cn/xgfw/sys/yqfxmrjkdkappnju/apply/saveApplyInfos.do',
@@ -36,7 +36,9 @@ def do_apply(cookies, WID, location):
                 IS_HAS_JKQK=1,
                 JRSKMYS=1,
                 JZRJRSKMYS=1,
-                CURR_LOCATION=location
+                CURR_LOCATION=location,
+                SFZJLN=0,
+                ZJHSJCSJ=hstime
             ),
             headers=config.HEADERS,
             cookies=cookies
@@ -55,5 +57,7 @@ def main(username, password, location):
     apply_list = get_apply_list(cookies)
     if not apply_list[0]['TBRQ'] == utils.get_GMT8_str('%Y-%m-%d'):
         raise Exception("当日健康填报未发布")
+    # 最近核酸检测时间
+    hsjc = utils.get_two_days_ago_GMT8_str('%Y-%m-%d') + ' 15'
     # 填报当天
-    do_apply(cookies, apply_list[0]['WID'], location)
+    do_apply(cookies, apply_list[0]['WID'], location, hsjc)
